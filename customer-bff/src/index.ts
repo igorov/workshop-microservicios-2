@@ -13,7 +13,13 @@ import { HealthPlugin } from 'hapi-k8s-health'
 const init = async () => {
   const server = Hapi.server({
     port: process.env.PORT || 8080,
-    host: '0.0.0.0'
+    host: '0.0.0.0',
+    routes: {
+      cors: {
+        origin: ["*"],
+        credentials: true
+      }
+    }
   });
 
   // Registra el path /liveness y /readiness para que se puedan hacer pruebas de salud

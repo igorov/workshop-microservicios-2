@@ -3,7 +3,7 @@ import { client } from './database.js';
 const tableDB = process.env.DB_TABLE;
 
 export const getAll = async () => {
-    const result = await client.query(`SELECT * FROM ${tableDB}`);
+    const result = await client.query(`SELECT * FROM ${tableDB} ORDER BY id DESC`);
     console.log(`listando clientes, cantidad: ${result.rowCount}`)
 
     return result;

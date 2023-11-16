@@ -15,7 +15,7 @@ export class OrderRepositoryImpl implements OrderRepository {
         logger.info("Inicio");
         const orderList: OrderQueryEntity[] = [];
 
-        const orders = await collection.get();
+        const orders = await collection.orderBy('orden', 'desc').get(); // Ordenar por el campo "orden" en forma descendente
         if (orders.empty) {
             logger.error('No se encontraron ordenes');
             return orderList;
