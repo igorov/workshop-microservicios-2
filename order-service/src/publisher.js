@@ -6,12 +6,13 @@ const topicOrder = process.env.TOPIC_ORDER;
 // Cliente del topic
 const clientPubSub = new PubSub();
 
-export const publishOrder = async (id_orden, id_cliente, monto, descripcion) => {
+export const publishOrder = async (id_orden, id_cliente, monto, descripcion, estado) => {
     const msg = {
         orden: id_orden,
         cliente: id_cliente,
         monto,
-        descripcion
+        descripcion,
+        estado
     }
 
     //const dataBuffer = Buffer.from(msg);

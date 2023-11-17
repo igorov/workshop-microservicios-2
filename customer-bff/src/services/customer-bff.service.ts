@@ -4,6 +4,7 @@ import { getRisk } from '../proxies/risk-proxy';
 import { logger } from '../utils/logger';
 
 export const getAll = async (): Promise<CustomerBffEntity[]> => {
+    logger.debug('Obteniendo todos los clientes');
     // Lógica
     const customers = await getCustomers();
     const list: CustomerBffEntity[] = [];

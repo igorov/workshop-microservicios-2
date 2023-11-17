@@ -19,8 +19,8 @@ export const getById = async (id) => {
 }
 
 export const create = async (order) => {
-    const query = `INSERT INTO ${tableDB}(descripcion, monto, id_cliente) VALUES ($1, $2, $3) RETURNING id`;
-    const values = [order.descripcion, order.monto, order.cliente];
+    const query = `INSERT INTO ${tableDB}(descripcion, monto, id_cliente, estado) VALUES ($1, $2, $3, $4) RETURNING id`;
+    const values = [order.descripcion, order.monto, order.cliente, order.estado];
 
     const result = await client.query(query, values)
 

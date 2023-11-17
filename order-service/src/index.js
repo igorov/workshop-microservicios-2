@@ -66,8 +66,9 @@ app.post('/orders', async (_req, res) => {
     const order = _req.body;
     let idCreado;
     try {
+        order.estado = "p";
         const idCreado = await repository.create(order);
-        await publishOrder(idCreado, order.cliente, order.monto, order.descripcion);
+        await publishOrder(idCreado, order.cliente, order.monto, order.descripcion, order.estado);
         res.status(201).json({ status: 'OK', message: `Recurso creado correctamente: ID=${idCreado}` });
     } catch (error) {
         console.error(`Error en la insercion del registro: ${error}`)

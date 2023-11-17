@@ -7,8 +7,9 @@ export interface OrderRepository {
 }
 
 const firestore = new Firestore();
+const orderView = process.env.ORDER_VIEW;
 // Obtener la colección de usuarios
-const collection = firestore.collection('order-view');
+const collection = firestore.collection(orderView);
 
 export class OrderRepositoryImpl implements OrderRepository {
     async getAll(): Promise<OrderQueryEntity[]> {
@@ -18,7 +19,6 @@ export class OrderRepositoryImpl implements OrderRepository {
         const orders = await collection.orderBy('orden', 'desc').get(); // Ordenar por el campo "orden" en forma descendente
         if (orders.empty) {
             logger.error('No se encontraron ordenes');
-            return orderList;
         }
         
         orders.forEach((doc: any) => {
