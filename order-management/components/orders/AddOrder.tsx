@@ -37,11 +37,11 @@ const AddOrder: React.FC<OrderAddProps> = ({ addOrder, fetchOrders, customers })
     });
     setDescripcion("");
     setMonto(0);
-    setId_cliente(0);
+    setId_cliente(customers.length > 0 ? customers[0].id : 0);
 
     setModalOpen(false);
     //router.push("/");
-    await fetchOrders();
+    //await fetchOrders();
   };
 
   return (
