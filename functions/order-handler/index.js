@@ -13,7 +13,7 @@ functions.cloudEvent('helloPubSub', async (cloudEvent) => {
 
   var msg = JSON.parse(data);
 
-  console.log(`Mensaje: orden: ${msg.orden}, cliente: ${msg.cliente}, monto: ${msg.monto}, descripcion: ${msg.descripcion}`);
+  console.log(`Mensaje: orden: ${msg.orden}, cliente: ${msg.cliente}, monto: ${msg.monto}, descripcion: ${msg.descripcion}, estado: ${msg.estado}`);
   const firestore = new Firestore();
 
   const customerURL = process.env.CUSTOMERS_URL;
@@ -24,7 +24,7 @@ functions.cloudEvent('helloPubSub', async (cloudEvent) => {
   }
 
   try {
-    const responseCustomer = await fetch(`${customerURL}/${msg.cliente}`);
+    const responseCustomer = await fetch(`${customerURL}/customers/${msg.cliente}`);
     const customer = await responseCustomer.json();
     console.log(`Customer: ${customer.nombre}`)
 

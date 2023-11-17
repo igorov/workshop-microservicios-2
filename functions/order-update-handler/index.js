@@ -10,7 +10,7 @@ functions.cloudEvent('helloPubSub', async (cloudEvent) => {
   const data = base64name
     ? Buffer.from(base64name, 'base64').toString()
     : 'World';
-  
+
   var msg = JSON.parse(data);
   console.log(`Mensaje: orden: ${msg.orden}, result: ${msg.result}`);
   const firestore = new Firestore();
@@ -23,7 +23,7 @@ functions.cloudEvent('helloPubSub', async (cloudEvent) => {
     let retries = 0;
     let ordenDB;
 
-    while (retries < 3) {
+    while (retries < 6) {
       console.log(`Retry: ${retries}`)
       const querySnapshot = await query.get();
       if(!querySnapshot.empty) {
@@ -53,7 +53,7 @@ functions.cloudEvent('helloPubSub', async (cloudEvent) => {
     } else {
       console.log("Cantidad maxima de reintentos")
     }
-    
+
   } catch (error) {
     console.error("Error al obtener el documento:", error);
     return null;
